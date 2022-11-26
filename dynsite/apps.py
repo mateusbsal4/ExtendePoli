@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DynSiteConfig(AppConfig):
+class DynsiteConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'dyn_site'
+    name = 'dynsite'
