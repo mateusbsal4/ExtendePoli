@@ -6,7 +6,7 @@
 <section class="lista-de-cards">
     {% for equipe in equipe_list %}
     <article class="card">
-        <a href="{% url 'dynsite:detail' equipe.nome %}"><img src="{{ equipe.logo }}"alt="Poster da equpe {{ equipe.nome}}"></a>
+        <a href="{% url 'equipes:detail' equipe.nome %}"><img src="{{ equipe.logo }}"alt="Poster da equpe {{ equipe.nome}}"></a>
         <p>{{ equipe.nome }}</p>
     </article>
     {% endfor %}

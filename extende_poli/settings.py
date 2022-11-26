@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'staticpages.apps.StaticpagesConfig', 
-    'dynsite.apps.DynsiteConfig', # adicione esta linha
+    'equipes.apps.EquipesConfig', # adicione esta linha
 ]
 
 MIDDLEWARE = [
