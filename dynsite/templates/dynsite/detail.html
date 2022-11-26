@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ equipe.nome }}
+{% endblock title %}
+
+{% block content %}
+<h2>Página da Equipe {{ equipe.nome }} </h2>
+
+<section class="dados-de-equipe">
+    <img src="{{ equipe.logo }}" alt="Logo da equipe {{ equipe.nome}}">
+    <ul>
+        <li>Nome: {{ equipe.nome }}</li>
+    </ul>
+</section>
+
+{% endblock content %}

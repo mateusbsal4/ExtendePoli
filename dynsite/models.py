@@ -9,17 +9,21 @@ class Equipe(models.Model):
 
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.nome}'
 
 
 class Evento(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
     nome = models.CharField(max_length=255)
     data = models.DateTimeField()
-    #descriçao = 
+    descricao = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return f'{self.nome}'
+
+class Foto(models.Model):
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    link = models.URLField(max_length=200, null=True)
 
 class Membro(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)

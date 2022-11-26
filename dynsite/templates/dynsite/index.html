@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Todas as Equipes</h2>
+{% if equipe_list %}
+<section class="lista-de-cards">
+    {% for equipe in equipe_list %}
+    <article class="card">
+        <a href="{% url 'dynsite:detail' forloop.counter %}"><img src="{{ equipe.logo }}"alt="Poster da equpe {{ equipe.nome}}"></a>
+        <p>{{ equipe.nome }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhuma equipe.</p>
+{% endif %}
+
+{% endblock content %}
