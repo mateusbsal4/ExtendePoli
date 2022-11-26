@@ -7,7 +7,7 @@ def list_equipes(request):
     context = {'equipe_list': equipe_list}
     return render(request, 'dynsite/index.html', context)
 
-def detail_equipe(request, equipe_id):
-    equipe = get_object_or_404(Equipe, pk=equipe_id)
+def detail_equipe(request, equipe_nome):
+    equipe = get_object_or_404(Equipe, nome=equipe_nome)
     context = {'equipe': equipe}
     return render(request, 'dynsite/detail.html', context)
