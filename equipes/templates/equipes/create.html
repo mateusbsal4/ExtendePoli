@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Adicionar Equipe</h2>
+<form method="POST" action="{% url 'equipes:create' %}">
+    {% csrf_token %}
+    <p>
+        <label for="id_name">Nome:</label>
+        <input type="text" name="nome" id="id_name" />
+    </p>
+    <p>
+        <label for="id_descricao">Descrição: </label>
+        <input type="text" name="descricao" id="id_descricao" />
+    </p>
+    <p>
+        <label for="id_logo">Url do logo:</label>
+        <input type="text" name="logo" id="id_logo" />
+    </p>
+
+    <button type="submit">Criar</button>
+</form>
+
+{% endblock content %}
+

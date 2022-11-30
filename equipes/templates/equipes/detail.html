@@ -11,7 +11,9 @@
     <img src="{{ equipe.logo }}" alt="Logo da equipe {{ equipe.nome}}">
     <ul>
         <li>Nome: {{ equipe.nome }}</li>
-        <li>Descricao: {{ equipe.descricao }}</li>
+        <li>Descrição: {{ equipe.descricao }}</li>
+        <li><a href="{% url 'equipes:update' equipe.id %}">Editar</a></li>
+        <li><a href="{% url 'equipes:delete' equipe.id %}">Apagar</a></li>
     </ul>
 </section>
 

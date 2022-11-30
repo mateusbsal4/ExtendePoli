@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'equipes:delete' equipe.id%}" method="post">
+    {% csrf_token %}
+    <p>
+        Você tem certeza que deseja remover a equipe "{{ equipe.nome }}"?
+    </p>
+    <button type="submit">Apagar</button>
+</form>
+
+{% endblock content %}

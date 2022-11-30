@@ -6,13 +6,18 @@
 <section class="lista-de-cards">
     {% for equipe in equipe_list %}
     <article class="card">
-        <a href="{% url 'equipes:detail' equipe.nome %}"><img src="{{ equipe.logo }}"alt="Poster da equpe {{ equipe.nome}}"></a>
+        <a href="{% url 'equipes:detail' equipe.id %}"><img src="{{ equipe.logo }}"alt="Poster da equipe {{ equipe.nome}}"></a>
         <p>{{ equipe.nome }}</p>
     </article>
     {% endfor %}
+<section>
+    <p>Não encontrou o projeto? <a href="{% url 'equipes:create' %}">Adicionar Equipe</a></p>
+</section>
+    
+    
 </section>
 {% else %}
-<p>Não foi encontrado nenhuma equipe.</p>
+<p>Não foi encontrada nenhuma equipe.</p>
 {% endif %}
 
 {% endblock content %}
