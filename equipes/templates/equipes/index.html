@@ -9,15 +9,12 @@
         <a href="{% url 'equipes:detail' equipe.id %}"><img src="{{ equipe.logo }}"alt="Poster da equipe {{ equipe.nome}}"></a>
         <p>{{ equipe.nome }}</p>
     </article>
-    {% endfor %}
-<section>
-    <p>Não encontrou o projeto? <a href="{% url 'equipes:create' %}">Adicionar Equipe</a></p>
-</section>
-    
-    
+    {% endfor %}    
 </section>
 {% else %}
 <p>Não foi encontrada nenhuma equipe.</p>
 {% endif %}
-
+<section>
+    <p>Não encontrou a equipe? <a href="{% url 'equipes:create' %}">Adicionar Equipe</a></p>
+</section>
 {% endblock content %}

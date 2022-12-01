@@ -96,3 +96,12 @@ def create_membro(request, equipe_id):
     context = {'form': form, 'equipe': equipe}
     return render(request, 'equipes/membro.html', context)
 
+def delete_membro(request, membro_id):
+    membro = get_object_or_404(Membro, pk=membro_id)
+
+    if request.method == "POST":
+        membro.delete()
+        return HttpResponseRedirect(reverse('equipes:index' ))
+
+    context = {'membro': membro}
+    return render(request, 'equipes/delete_membro.html', context)

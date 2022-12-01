@@ -31,6 +31,7 @@
                 <ul>
                     <li>Curso: {{ membro.curso }}</li>
                     <li>Ingressou na equipe em: {{ membro.entrada_equipe|date }} </li>
+                    <li><a href="{% url 'equipes:delete-membro' membro.id %}">Remover</a></li>
                 </ul>
             </p>
             {% endfor %}
