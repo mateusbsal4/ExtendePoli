@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Adicionar membro à equipe {{ equipe.name }} </h2>
+
+<form action="{% url 'equipes:membro' equipe.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Adicionar Membro</button>
+</form>
+
+<p><a href="{% url 'equipes:detail' equipe.id %}">Voltar para a página da equipe</a></p>
+{% endblock content %}

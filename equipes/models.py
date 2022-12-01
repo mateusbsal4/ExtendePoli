@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
+from django.views import generic
 
 
 class Equipe(models.Model):
@@ -11,6 +13,13 @@ class Equipe(models.Model):
     def __str__(self):
         return f'{self.nome}'
 
+class Membro(models.Model):
+    equipes = models.ManyToManyField(Equipe)
+    nome = models.CharField(max_length=50)
+    curso = models.CharField(max_length = 50)
+    entrada_equipe = models.DateField()
+    def __str__(self):
+        return f'{self.nome}'
 
 class Evento(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
@@ -21,17 +30,14 @@ class Evento(models.Model):
     def __str__(self):
         return f'{self.nome}'
 
+
+
+
 class Foto(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
     link = models.URLField(max_length=200, null=True)
 
-class Membro(models.Model):
-    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
-    nome = models.CharField(max_length=50)
-    curso = models.CharField(max_length = 50)
-    entrada_equipe = models.DateField()
-    def __str__(self):
-        return f'{self.nome}'
+
 
 
 class Interessado(models.Model):

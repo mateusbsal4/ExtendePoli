@@ -17,4 +17,30 @@
     </ul>
 </section>
 
+<hr>
+
+<section>
+    <header>
+        <h3>Membros</h3>
+    </header>
+    <ul>
+        {% if equipe.membro_set.all %}
+            {% for membro in equipe.membro_set.all %}
+            <p>
+                <h4>{{ membro.nome }}</h4>
+                <ul>
+                    <li>Curso: {{ membro.curso }}</li>
+                    <li>Ingressou na equipe em: {{ membro.entrada_equipe|date }} </li>
+                </ul>
+            </p>
+            {% endfor %}
+        {% else %}
+            <p>Ainda não existe nenhum membro nesta equipe.</p>
+        {% endif %}
+    </ul>
+    <hr>
+
+    <a href="{% url 'equipes:membro' equipe.pk %}"><button>Adicionar Membro</button></a>
+</section>
+
 {% endblock content %}
