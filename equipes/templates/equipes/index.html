@@ -15,6 +15,8 @@
 <p>Não foi encontrada nenhuma equipe.</p>
 {% endif %}
 <section>
+    {% if perms.equipes.add_equipe %}
     <p>Não encontrou a equipe? <a href="{% url 'equipes:create' %}">Adicionar Equipe</a></p>
+    {% endif%}
 </section>
 {% endblock content %}
