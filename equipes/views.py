@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Equipe, Membro
-from .forms import EquipeForm, MembroForm
+from .models import Equipe, Membro, Foto
+from .forms import EquipeForm, MembroForm, FotoForm
 # Create your views here.
 
 def list_equipes(request):
@@ -105,3 +105,19 @@ def delete_membro(request, membro_id):
 
     context = {'membro': membro}
     return render(request, 'equipes/delete_membro.html', context)
+
+def create_foto(request, equipe_id):
+    equipe = get_object_or_404(Equipe, pk=equipe_id)
+    if request.method == 'POST':
+        form = FotoForm(request.POST)
+        if form.is_valid():
+            link = form.cleaned_data['link']
+            foto = Foto(link = link,
+                        equipe = equipe)
+            foto.save()
+            return HttpResponseRedirect(
+                reverse('equipes:detail', args=(equipe_id, )))
+    else:
+        form = FotoForm()
+    context = {'form': form, 'equipe': equipe}
+    return render(request, 'equipes/foto.html', context)

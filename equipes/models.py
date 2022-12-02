@@ -6,7 +6,7 @@ from django.views import generic
 
 class Equipe(models.Model):
     nome = models.CharField(max_length=100)
-    logo = models.URLField(max_length=200, null=True)
+    logo = models.URLField(max_length=1000, null=True)
     descricao = models.CharField(max_length=500, null=True)
 
 
@@ -21,6 +21,11 @@ class Membro(models.Model):
     def __str__(self):
         return f'{self.nome}'
 
+class Foto(models.Model):
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    link = models.URLField(max_length=1000, null=True)
+
+
 class Evento(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
     nome = models.CharField(max_length=255)
@@ -32,10 +37,6 @@ class Evento(models.Model):
 
 
 
-
-class Foto(models.Model):
-    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
-    link = models.URLField(max_length=200, null=True)
 
 
 

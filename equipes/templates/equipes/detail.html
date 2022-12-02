@@ -15,6 +15,7 @@
         <li><a href="{% url 'equipes:update' equipe.id %}">Editar</a></li>
         <li><a href="{% url 'equipes:delete' equipe.id %}">Apagar</a></li>
     </ul>
+
 </section>
 
 <hr>
@@ -39,9 +40,27 @@
             <p>Ainda não existe nenhum membro nesta equipe.</p>
         {% endif %}
     </ul>
-    <hr>
+
 
     <a href="{% url 'equipes:membro' equipe.pk %}"><button>Adicionar Membro</button></a>
+</section>
+<hr>
+<section>
+    <header>
+        <h3>Fotos</h3>
+    </header>
+    <ul>
+        {% if equipe.foto_set.all %}
+            {% for foto in equipe.foto_set.all %}
+            <img src="{{ foto.link }}">
+            {% endfor %}
+        {% else %}
+            <p>Não há fotos para esta equipe.</p>
+        {% endif %} 
+    </ul>
+
+
+    <a href="{% url 'equipes:foto' equipe.pk %}"><button>Adicionar Foto</button></a>
 </section>
 
 {% endblock content %}

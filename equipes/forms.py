@@ -28,3 +28,13 @@ class MembroForm(ModelForm):
             'curso': 'Curso de ingresso na Poli',
             'entrada_equipe': "Data de entrada na equipe",         
         }
+
+class FotoForm(ModelForm):
+    class Meta:
+        model = Foto
+        fields = [
+            'link',
+        ]
+        labels = {
+            'link': 'Url da foto',
+        }
