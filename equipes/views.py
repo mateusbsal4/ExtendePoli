@@ -10,10 +10,6 @@ def list_equipes(request):
     context = {'equipe_list': equipe_list}
     return render(request, 'equipes/index.html', context)
 
-
-
-
-
 def detail_equipe(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
     context = {'equipe': equipe}
