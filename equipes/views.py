@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Equipe, Membro, Foto
 from .forms import EquipeForm, MembroForm, FotoForm
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 def list_equipes(request):
@@ -15,7 +16,8 @@ def detail_equipe(request, equipe_id):
     context = {'equipe': equipe}
     return render(request, 'equipes/detail.html', context)
 
-
+@login_required
+@permission_required('equipes.add_equipe')
 def create_equipe(request):
     if request.method == 'POST':
         form = EquipeForm(request.POST)
@@ -35,7 +37,8 @@ def create_equipe(request):
     return render(request, 'equipes/create.html', context)
 
 
-
+@login_required
+@permission_required('equipes.change_equipe')
 def update_equipe(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
 
@@ -60,7 +63,8 @@ def update_equipe(request, equipe_id):
     return render(request, 'equipes/update.html', context)
 
 
-
+@login_required
+@permission_required('equipes.delete_equipe')
 def delete_equipe(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
 
@@ -71,6 +75,8 @@ def delete_equipe(request, equipe_id):
     context = {'equipe': equipe}
     return render(request, 'equipes/delete.html', context)
 
+@login_required
+@permission_required('equipes.change_equipe')
 def create_membro(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
     if request.method == 'POST':
@@ -92,6 +98,8 @@ def create_membro(request, equipe_id):
     context = {'form': form, 'equipe': equipe}
     return render(request, 'equipes/membro.html', context)
 
+@login_required
+@permission_required('equipes.change_equipe')
 def delete_membro(request, membro_id):
     membro = get_object_or_404(Membro, pk=membro_id)
 
@@ -102,6 +110,8 @@ def delete_membro(request, membro_id):
     context = {'membro': membro}
     return render(request, 'equipes/delete_membro.html', context)
 
+@login_required
+@permission_required('equipes.change_equipe')
 def create_foto(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
     if request.method == 'POST':

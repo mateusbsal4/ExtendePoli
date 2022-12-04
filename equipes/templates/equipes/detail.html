@@ -12,8 +12,12 @@
     <ul>
         <li>Nome: {{ equipe.nome }}</li>
         <li>Descrição: {{ equipe.descricao }}</li>
-        <li><a href="{% url 'equipes:update' equipe.id %}">Editar</a></li>
-        <li><a href="{% url 'equipes:delete' equipe.id %}">Apagar</a></li>
+        {% if perms.equipes.change_equipe %}
+            <li><a href="{% url 'equipes:update' equipe.id %}">Editar</a></li>
+        {% endif%}
+        {% if perms.equipes.delete_equipe %}
+            <li><a href="{% url 'equipes:delete' equipe.id %}">Apagar</a></li>
+        {% endif%}
     </ul>
 
 </section>
@@ -32,7 +36,9 @@
                 <ul>
                     <li>Curso: {{ membro.curso }}</li>
                     <li>Ingressou na equipe em: {{ membro.entrada_equipe|date }} </li>
-                    <li><a href="{% url 'equipes:delete-membro' membro.id %}">Remover</a></li>
+                    {% if perms.equipes.change_equipe %}
+                        <li><a href="{% url 'equipes:delete-membro' membro.id %}">Remover</a></li>
+                    {% endif%}
                 </ul>
             </p>
             {% endfor %}
@@ -41,8 +47,9 @@
         {% endif %}
     </ul>
 
-
-    <a href="{% url 'equipes:membro' equipe.pk %}"><button>Adicionar Membro</button></a>
+    {% if perms.equipes.change_equipe %}
+        <a href="{% url 'equipes:membro' equipe.pk %}"><button>Adicionar Membro</button></a>
+    {% endif%}
 </section>
 <hr>
 <section>
@@ -59,8 +66,9 @@
         {% endif %} 
     </ul>
 
-
-    <a href="{% url 'equipes:foto' equipe.pk %}"><button>Adicionar Foto</button></a>
+    {% if perms.equipes.change_equipe %}
+        <a href="{% url 'equipes:foto' equipe.pk %}"><button>Adicionar Foto</button></a>
+    {% endif%}
 </section>
 
 {% endblock content %}
