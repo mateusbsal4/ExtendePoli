@@ -60,6 +60,9 @@
         {% if equipe.foto_set.all %}
             {% for foto in equipe.foto_set.all %}
             <img src="{{ foto.link }}">
+            {% if perms.equipes.change_equipe %}
+            <li><a href="{% url 'equipes:delete-foto' foto.id %}">Remover</a></li>
+            {% endif%}
             {% endfor %}
         {% else %}
             <p>Não há fotos para esta equipe.</p>

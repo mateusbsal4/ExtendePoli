@@ -127,3 +127,16 @@ def create_foto(request, equipe_id):
         form = FotoForm()
     context = {'form': form, 'equipe': equipe}
     return render(request, 'equipes/foto.html', context)
+
+
+@login_required
+@permission_required('equipes.change_equipe')
+def delete_foto(request, foto_id):
+    foto = get_object_or_404(Foto, pk=foto_id)
+    equipe_id = foto.equipe.id
+    if request.method == "POST":
+        foto.delete()
+        return HttpResponseRedirect(reverse('equipes:detail', args=(equipe_id, )))
+
+    context = {'foto': foto}
+    return render(request, 'equipes/delete_foto.html', context)
