@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Adicionar Evento</h2>
+
+<section>
+
+
+    <div class="console-log">
+        <div class="log-content">
+            <div class="--noshadow" id="demoEvoCalendar"></div>
+        </div>
+    </div>
+
+
+    <div class="CalendarButton">
+        <!-- <a href="{% url 'equipes:evento' equipe.pk %}"><button>Adicionar Evento</button></a> -->
+        <a ><button class="btn-action" id="addBtn">Adicionar Evento</button></a>
+        <a ><button class="btn-action" id="addBtn2">Adicionar Evento 2</button></a>
+        <!-- <a href="{% url 'equipes:delete-evento' equipe.pk %}"><button>Remover Evento</button></a>    -->
+        <a><button class="btn-action" id="removeBtn">Remover Evento</button></a>   
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+    <script src="{% static 'js/demo.js' %}"></script>
+    <script> 
+        var t = {
+            id: "9jU6g6f",
+            name: "Holiday #1",
+            description: "Lorem ipsum dolor sit amet.",
+            date: today.getMonth() + 1 + "/10/" + today.getFullYear(),
+            type: "holiday"
+        }
+        $(document).ready(function() {
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+        $("#addBtn2").click(function(a) {
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+    </script>
+
+    <form action="{% url 'equipes:evento' equipe.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="addBtn">Adicionar Evento</button>
+    </form>
+    
+
+    
+    <script>
+        // $(function(){
+        //     event = {
+        //         // id: document.getElementsById("id_ID").val,
+        //         id: "batata",
+        //         name: document.getElementsById("id_nome").val,
+        //         description: document.getElementsById("id_descricao").val,
+        //         date: document.getElementsById("id_data").val,
+        //         type: document.getElementsById("id_tipo").val,
+        //     }
+        //     $("#demoEvoCalendar").evoCalendar("addCalendarEvent", event);
+        //     active_events.push(event);
+        //     // events.splice(curAdd, 1);
+        //     // if (0 === events.length) a.target.disabled = !0;
+        //     if (active_events.length > 0) $("#removeBtn").prop("disabled", !1);
+    
+        // })
+        // $(function() {
+        //     curAdd = getRandom(events.length);
+        //     $("#demoEvoCalendar").evoCalendar("addCalendarEvent", events[curAdd]);
+        //     active_events.push(events[curAdd]);
+        //     events.splice(curAdd, 1);
+        //     if (0 === events.length) a.target.disabled = !0;
+        //     if (active_events.length > 0) $("#removeBtn").prop("disabled", !1);
+        // });
+    
+    </script>
+
+</section>
+
+
+
+{% endblock content %}

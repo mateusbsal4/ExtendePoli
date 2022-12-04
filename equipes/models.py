@@ -28,9 +28,11 @@ class Foto(models.Model):
 
 class Evento(models.Model):
     equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE)
+    # ID = models.CharField(max_length=255)
     nome = models.CharField(max_length=255)
     data = models.DateTimeField()
     descricao = models.CharField(max_length=500, null=True)
+    tipo = models.CharField(max_length=255)
 
     def __str__(self):
         return f'{self.nome}'

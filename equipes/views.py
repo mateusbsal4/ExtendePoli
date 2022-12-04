@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.core import serializers
 from django.urls import reverse
-from .models import Equipe, Membro, Foto
-from .forms import EquipeForm, MembroForm, FotoForm
+from .models import Equipe, Membro, Foto, Evento
+from .forms import EquipeForm, MembroForm, FotoForm, EventoForm
 from django.contrib.auth.decorators import login_required, permission_required
+import json
 # Create your views here.
 
 def list_equipes(request):
@@ -13,7 +15,45 @@ def list_equipes(request):
 
 def detail_equipe(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
-    context = {'equipe': equipe}
+    eventos = Evento.objects.all()
+    listaEventos = []
+    
+    x = eventos[0]
+    listaEventos.append(
+    {
+        "id": x.id,
+        "name": x.nome,
+        "description": x.descricao,
+        "date" : x.data,
+        "type" : x.tipo,
+    })
+    # for x in eventos:
+    #     listaEventos.append(
+    #         {
+    #             "id": x.id,
+    #             "name": x.nome,
+    #             "description": x.descricao,
+    #             "date" : x.data,
+    #             "type" : x.tipo,
+    #         }
+    #     )
+    eve = serializers.serialize("json", Evento.objects.all())
+    te = { 
+            "id": x.id,
+            "name": x.nome,
+            "description": x.descricao,
+            "date" : x.data.strftime("%m/%d/%Y"),
+            "type" : x.tipo,
+        }
+    t2 = {
+            "id": "9jU6g6f",
+            "name": "Holiday #1",
+            "description": "Lorem ipsum dolor sit amet.",
+            "date": "12/08/2022",
+            "type": "holiday"
+        }
+    y = json.dumps(t2)
+    context = {'equipe': equipe, 'listaEventos' : listaEventos, 'te' : te, 't2' : t2, 'y':y, 'eve':eve}
     return render(request, 'equipes/detail.html', context)
 
 @login_required
@@ -127,3 +167,51 @@ def create_foto(request, equipe_id):
         form = FotoForm()
     context = {'form': form, 'equipe': equipe}
     return render(request, 'equipes/foto.html', context)
+
+
+
+
+@login_required
+@permission_required('equipes.change_equipe')
+def create_evento(request, equipe_id):
+    equipe = get_object_or_404(Equipe, pk=equipe_id)
+    if request.method == 'POST':
+        form = EventoForm(request.POST)
+        if form.is_valid():
+            # eve_id = form.cleaned_data['ID']
+            eve_name = form.cleaned_data['nome']
+            eve_desc = form.cleaned_data['descricao']
+            eve_date = form.cleaned_data['data']
+            eve_type = form.cleaned_data['tipo']
+            evento = Evento(
+                            # ID=eve_id,
+                            nome=eve_name,
+                            descricao = eve_desc,
+                            data = eve_date,
+                            tipo = eve_type,
+                            equipe=equipe,
+                            )
+            evento.save()
+            # evento.equipes.add(equipe)
+            # return HttpResponseRedirect(
+            #     reverse('equipes:detail', args=(equipe_id, )))
+    else:
+        form = EventoForm()
+    context = {'form': form, 'equipe': equipe}
+    return render(request, 'equipes/evento.html', context)
+
+
+
+    
+
+@login_required
+@permission_required('equipes.change_equipe')
+def delete_evento(request, membro_id):
+    membro = get_object_or_404(Membro, pk=membro_id)
+
+    if request.method == "POST":
+        membro.delete()
+        return HttpResponseRedirect(reverse('equipes:index' ))
+
+    context = {'membro': membro}
+    return render(request, 'equipes/delete_membro.html', context)

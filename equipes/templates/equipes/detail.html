@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 {{ equipe.nome }}
@@ -20,6 +21,67 @@
         {% endif%}
     </ul>
 
+</section>
+
+<hr>
+
+<section>
+
+    <div class="console-log">
+        <div class="log-content">
+            <div class="--noshadow" id="demoEvoCalendar"></div>
+        </div>
+    </div>
+
+    {% if perms.equipes.change_equipe %}
+        <div class="CalendarButton">
+            <a href="{% url 'equipes:evento' equipe.pk %}"><button>Adicionar Evento</button></a>
+            <a ><button class="btn-action" id="addBtn2">Adicionar Evento 2</button></a>
+            <a ><button class="btn-action" id="addBtn3">Adicionar Evento 3</button></a>
+            <a ><button class="btn-action" id="addBtn4">Adicionar Evento 4</button></a>
+            <!-- <a href="{% url 'equipes:delete-evento' equipe.pk %}"><button>Remover Evento</button></a>    -->
+            <a><button class="btn-action" id="removeBtn">Remover Evento</button></a>   
+        </div>
+    {% endif%}
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+    <script src="{% static 'js/demo.js' %}"></script>
+    
+    <script> 
+        var a = "{{ te|safe }}";
+        var b = JSON.parse('{{ y | escapejs  }}');
+        // var b = JSON.parse(a);
+        // const b = JSON.parse('{"id":"9jU6g6f","name":"Holiday #1","description":"Lorem ipsum dolor sit amet.","date":"12/09/2022","type":"holiday"}');
+        var t = {
+            id: "9jU6g6f",
+            name: "Holiday #1",
+            description: "Lorem ipsum dolor sit amet.",
+            date: today.getMonth() + 1 + "/10/" + today.getFullYear(),
+            type: "holiday"
+        };
+        document.write(a);
+        document.write(b);
+
+        document.write(a.date);
+        document.write(b.date);
+        document.write(t.date);
+        // alert(t.date)
+        // document.write(t);
+
+        $(document).ready(function() {
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+        $("#addBtn2").click(function(a) {
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+        $("#addBtn3").click(function(a) {
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", a);
+        });
+        $("#addBtn4").click(function(a) {
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", b);
+        });
+    </script>
 </section>
 
 <hr>

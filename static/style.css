@@ -46,6 +46,7 @@
   body {
     display: flex;
     flex-direction: column;
+    background: linear-gradient(45deg,#74f8ff,#9f7cff);
   }
   
   nav#navegacao-principal li {
@@ -59,6 +60,7 @@
     max-width: 1080px;
     padding: 1rem 1rem;
     flex-grow: 1;
+    /* color: #ff0000; */
   }
   
   footer#rodape-principal {
@@ -148,9 +150,29 @@
     margin: 0.5rem 0;
     padding: 1rem 2rem;
   }
-  
+
   button:hover {
     background-color: var(--secondary-color-light);
     border: 2px solid var(--secondary-color-light);
   }
+
+.hero{
+    /* width: 100%;
+    height: 100%; */
+    font-family: 'Roboto', sans-serif;
+}
+
+#calendar{
+    width: 100%;
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%,-50%); */
+}
+
+.CalendarButton {
+  /* display: inline-block; */
+  margin: auto;
   
+  text-align: center;
+}

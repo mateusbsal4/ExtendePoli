@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Equipe, Membro, Foto
+from .models import Equipe, Membro, Foto, Evento
 
 class EquipeForm(ModelForm):
     class Meta:
@@ -37,4 +37,23 @@ class FotoForm(ModelForm):
         ]
         labels = {
             'link': 'Url da foto',
+        }
+
+
+class EventoForm(ModelForm):
+    class Meta:
+        model = Evento
+        fields = [
+            # 'ID',
+            'nome',
+            'data',
+            'tipo',
+            'descricao',
+        ]
+        labels = {
+            # 'ID':'ID',
+            'nome': 'Nome',
+            'data': 'Data',
+            'tipo': 'Tipo',
+            'descricao': 'Descrição',       
         }

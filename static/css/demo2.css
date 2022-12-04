@@ -1,0 +1,66 @@
+button.btn-action {
+	font-family: 'Fira Mono', monospace;
+	color: #755eb5;
+	border: none;
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 20px 30px;
+	font-size: 18px;
+	cursor: pointer;
+	border: 2px solid #fff;
+	-webkit-box-shadow: 0 10px 20px -5px rgba(19, 31, 51, .65);
+	box-shadow: 0 10px 20px -5px rgba(19, 31, 51, .65);
+}
+button.btn-action:disabled {
+	background-color: #e4e4e4;
+	border-color: #e4e4e4;
+	-webkit-transform: scale(.9);
+	-ms-transform: scale(.9);
+	transform: scale(.9);
+	cursor: not-allowed;
+}
+button.btn-action.active {
+	background-color: #9886c7;
+	color: #fff;
+}
+.console-log {
+	font-family: 'Roboto', sans-serif;
+	position: relative;
+	width: 100%;
+	padding: 26px 0px 10px 10px;
+	background-color: #fff;
+	border-radius: 8px;
+	margin: 10px auto 30px auto;
+	-webkit-box-shadow: 0 10px 20px -5px rgba(19, 31, 51, .65);
+	box-shadow: 0 10px 20px -5px rgba(19, 31, 51, .65);
+}
+.console-log::after {
+	content: "";
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 40px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: #ff5f56;
+	-webkit-box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27c93f;
+	box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27c93f;
+}
+
+.console-log.--md {
+	width: 65%;
+}
+.console-log.--sm {
+	width: 50%;
+}
+.console-log.--ads {
+	max-width: 400px;
+}
+.console-log>.log-content {
+	overflow: auto;
+}
+.--noshadow {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
