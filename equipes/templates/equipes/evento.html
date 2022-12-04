@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ equipe.nome }}
+{% endblock title %}
+
+{% block content %}
+
+<h2>Adicionar Evento</h2>
+
+<section>
+
+
+    <div class="console-log">
+        <div class="log-content">
+            <div class="--noshadow" id="demoEvoCalendar"></div>
+        </div>
+    </div>
+
+
+    <!-- <div class="CalendarButton">
+        <a ><button class="btn-action" id="addBtn2">Adicionar Evento</button></a>
+        <a><button class="btn-action" id="removeBtn">Remover Evento</button></a>   
+    </div> -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+    <script src="{% static 'js/demo.js' %}"></script>
+
+
+    <form action="{% url 'equipes:evento' equipe.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="addBtn2">Adicionar Evento</button>
+    </form>
+
+    <p><a href="{% url 'equipes:detail' equipe.id %}">Voltar para a página da equipe</a></p>
+    
+    <script> 
+        
+        $(document).ready(function() {
+            var t = JSON.parse('{{ eve | escapejs }}');
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+        
+        $("#addBtn2").click(function(a) {
+            var t = JSON.parse('{{ eve | escapejs }}');
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+    </script>
+
+</section>
+
+
+
+{% endblock content %}

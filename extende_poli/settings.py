@@ -110,6 +110,12 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
+# DATETIME_FORMAT = '%d-%m-%Y %H:%M:%S' 
+
+# DATE_INPUT_FORMATS = ('%d/%m/%Y','%d-%m-%Y','%Y-%m-%d')
+
+USE_L10N = False
+
 USE_I18N = True
 
 USE_TZ = True

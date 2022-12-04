@@ -12,6 +12,11 @@ urlpatterns = [
     path('<int:equipe_id>/membro/', views.create_membro, name='membro'),
     path('<int:membro_id>/delete_membro/', views.delete_membro, name='delete-membro'),
     path('<int:equipe_id>/foto/', views.create_foto, name='foto'),
+<<<<<<< HEAD
     path('<int:foto_id>/delete_foto/', views.delete_foto, name='delete-foto'),
 
+=======
+    path('<int:equipe_id>/evento/', views.create_evento, name='evento'),
+    path('<int:equipe_id>/delete_evento/', views.delete_evento, name='delete-evento'),
+>>>>>>> 991525617124fcfb41f7901a43882f2bab9edb9d
 ]   

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 {{ equipe.nome }}
@@ -20,6 +21,38 @@
         {% endif%}
     </ul>
 
+</section>
+
+<hr>
+
+<section>
+
+    <div class="console-log">
+        <div class="log-content">
+            <div class="--noshadow" id="demoEvoCalendar"></div>
+        </div>
+    </div>
+
+    {% if perms.equipes.change_equipe %}
+        <div class="CenterButton">
+            <a href="{% url 'equipes:evento' equipe.pk %}"><button >Adicionar Evento</button></a>
+            <a><button id="removeBtn">Remover Evento</button></a>   
+        </div>
+    {% endif%}
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+    <script src="{% static 'js/demo.js' %}"></script>
+    
+    <script> 
+        var t = JSON.parse('{{ eve | escapejs  }}');
+
+        $(document).ready(function() {
+            
+            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        });
+
+    </script>
 </section>
 
 <hr>
