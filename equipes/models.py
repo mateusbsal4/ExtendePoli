@@ -2,8 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.views import generic
-
-
+from django import forms
+from datetime import date
 class Equipe(models.Model):
     nome = models.CharField(max_length=100)
     logo = models.URLField(max_length=1000, null=True)

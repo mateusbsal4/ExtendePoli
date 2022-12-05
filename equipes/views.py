@@ -15,45 +15,9 @@ def list_equipes(request):
 
 def detail_equipe(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
-    eventos = Evento.objects.all()
-    listaEventos = []
-    
-    x = eventos[0]
-    listaEventos.append(
-    {
-        "id": x.id,
-        "name": x.nome,
-        "description": x.descricao,
-        "date" : x.data,
-        "type" : x.tipo,
-    })
-    # for x in eventos:
-    #     listaEventos.append(
-    #         {
-    #             "id": x.id,
-    #             "name": x.nome,
-    #             "description": x.descricao,
-    #             "date" : x.data,
-    #             "type" : x.tipo,
-    #         }
-    #     )
-    eve = serializers.serialize("json", Evento.objects.all())
-    te = { 
-            "id": x.id,
-            "name": x.nome,
-            "description": x.descricao,
-            "date" : x.data.strftime("%m/%d/%Y"),
-            "type" : x.tipo,
-        }
-    t2 = {
-            "id": "9jU6g6f",
-            "name": "Holiday #1",
-            "description": "Lorem ipsum dolor sit amet.",
-            "date": "12/08/2022",
-            "type": "holiday"
-        }
-    y = json.dumps(t2)
-    context = {'equipe': equipe, 'listaEventos' : listaEventos, 'te' : te, 't2' : t2, 'y':y, 'eve':eve}
+
+    eve = get_events(equipe_id)
+    context = {'equipe': equipe, 'eve':eve}
     return render(request, 'equipes/detail.html', context)
 
 @login_required
@@ -193,11 +157,13 @@ def create_evento(request, equipe_id):
                             )
             evento.save()
             # evento.equipes.add(equipe)
-            # return HttpResponseRedirect(
-            #     reverse('equipes:detail', args=(equipe_id, )))
+            return HttpResponseRedirect(
+                reverse('equipes:detail', args=(equipe_id, )))
     else:
         form = EventoForm()
-    context = {'form': form, 'equipe': equipe}
+    
+    eve = get_events(equipe_id)
+    context = {'form':form, 'equipe': equipe, 'eve':eve}
     return render(request, 'equipes/evento.html', context)
 
 
@@ -215,3 +181,26 @@ def delete_evento(request, membro_id):
 
     context = {'membro': membro}
     return render(request, 'equipes/delete_membro.html', context)
+
+
+
+def get_events(*equipe_id):
+    if equipe_id:
+        eventos = Evento.objects.filter(equipe_id=equipe_id)
+    else:
+        eventos = Evento.objects.all()
+
+    listaEventos = []
+    for x in eventos:
+        listaEventos.append(
+            {
+                "id": x.id,
+                "name": x.nome,
+                "description": x.descricao,
+                "date" : x.data.strftime("%m/%d/%Y"),
+                "type" : x.tipo,
+            }
+        )
+        print(x.data.strftime("%m/%d/%Y"))
+        
+    return json.dumps(listaEventos,indent=2)

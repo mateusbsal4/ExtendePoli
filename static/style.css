@@ -170,9 +170,8 @@
     /* transform: translate(-50%,-50%); */
 }
 
-.CalendarButton {
+.CenterButton {
   /* display: inline-block; */
   margin: auto;
-  
   text-align: center;
 }
