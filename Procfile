@@ -1,0 +1,1 @@
+web: gunicorn extende_poli.wsgi
