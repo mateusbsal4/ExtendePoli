@@ -63,3 +63,6 @@ class EventoForm(ModelForm):
             'tipo': 'Tipo',
             'descricao': 'Descrição',       
         }
+
+class DelEventoForm(forms.Form):
+    ID = forms.IntegerField()

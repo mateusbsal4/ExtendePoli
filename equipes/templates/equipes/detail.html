@@ -34,10 +34,7 @@
     </div>
 
     {% if perms.equipes.change_equipe %}
-        <div class="CenterButton">
-            <a href="{% url 'equipes:evento' equipe.pk %}"><button >Adicionar Evento</button></a>
-            <a><button id="removeBtn">Remover Evento</button></a>   
-        </div>
+        <a href="{% url 'equipes:evento' equipe.pk %}"><button >Editar Eventos</button></a>
     {% endif%}
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>

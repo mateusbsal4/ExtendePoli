@@ -31,11 +31,19 @@
 
     <form action="{% url 'equipes:evento' equipe.id %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" id="addBtn2">Adicionar Evento</button>
+        {{form1.as_p}}
+        <button type="submit" name="btnform1">Adicionar Evento</button>
+    </form>
+    <form action="{% url 'equipes:evento' equipe.id %}" method="post">
+        {% csrf_token %}
+        {{form2.as_p}}
+        <button type="submit" name="btnform2">Remover Evento</button>
     </form>
 
-    <p><a href="{% url 'equipes:detail' equipe.id %}">Voltar para a página da equipe</a></p>
+    <div class="row">
+        <p><a href="{% url 'equipes:detail' equipe.id %}">Voltar para a página da equipe</a></p>
+    </div>
+    
     
     <script> 
         
@@ -44,10 +52,10 @@
             $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
         });
         
-        $("#addBtn2").click(function(a) {
-            var t = JSON.parse('{{ eve | escapejs }}');
-            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
-        });
+        // $("#addBtn2").click(function(a) {
+        //     var t = JSON.parse('{{ eve | escapejs }}');
+        //     $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
+        // });
     </script>
 
 </section>
