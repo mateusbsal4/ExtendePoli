@@ -1,35 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}
 Página Inicial
 {% endblock title %}
 
 {% block content %}
-<h1><i>Bem Vindo ao Extende Poli!</i></h1>
+<h1>Bem Vindo ao Extende Poli!</h1>
 <p>Aqui você encontrará os grupos de extensão da Escola Politécnica da USP, com uma descrição, seus principais projetos e eventos.</p>
-
-<section>
-
-    <div class="console-log">
-        <div class="log-content">
-            <div class="--noshadow" id="demoEvoCalendar"></div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="{% static 'js/evo-calendar.min.js' %}"></script>
-    <script src="{% static 'js/demo.js' %}"></script>
-    
-    <script> 
-        var t = JSON.parse('{{ eve | escapejs  }}');
-
-        $(document).ready(function() {
-            
-            $("#demoEvoCalendar").evoCalendar("addCalendarEvent", t);
-        });
-
-    </script>
-
-
 {% endblock content %}

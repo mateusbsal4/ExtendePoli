@@ -5,22 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% block title %}{% endblock %} | ExtendePoli
     </title>
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" /> <!-- adicione esta linha -->
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.orange-coral.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.midnight-blue.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.royal-navy.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/demo2.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Saira+Stencil+One&family=Zen+Dots&display=swap" rel="stylesheet"> <!-- adicione esta linha -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> <!-- adicione esta linha -->
 </head>
 
 <body>
     <header id="cabecalho-principal">
-        <a href="{% url 'index' %}"> Início </a> <!-- adicione esta linha -->
+        <a href="{% url 'index' %}"> <h4>ExtendePoli</h4> </a> <!-- adicione esta linha -->
         <nav id="navegacao-principal">
             <ul>
                 {% if user.is_authenticated %}
@@ -34,11 +30,29 @@
             </ul>
         </nav>
 
+
     </header>
-    <main id="conteiner-principal">
-        {% block content %}
-        {% endblock content %}
+    <section class="conteiner-principal">
+            {% block content %}
+            {% endblock content %}
+
+        
+            <div class ="extras">
+                <h1>Calendário</h1>
+
+                
+            </div>
+            <div class= "center"> 
+                <div class = "texto1">
+                    <h1>Todos os <span style="color: #064a7b;"> Grupos</span></h1>
+                    <roda>Skyrats</roda> <br/> <roda>KeepFlying</roda> <br/> <roda>Jupiter</roda> <br/> <roda>PoliMilhagem</roda>
+
+
+                </div>
+            </div>
+
     </main>
+
     <footer id="rodape-principal">
         <p>
             <small>Copyright 2022</small>
