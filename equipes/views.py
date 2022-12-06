@@ -181,20 +181,6 @@ def create_evento(request, equipe_id):
 
 
 
-    
-
-@login_required
-@permission_required('equipes.change_equipe')
-def delete_evento(request, membro_id):
-    membro = get_object_or_404(Membro, pk=membro_id)
-
-    if request.method == "POST":
-        membro.delete()
-        return HttpResponseRedirect(reverse('equipes:index' ))
-
-    context = {'membro': membro}
-    return render(request, 'equipes/delete_membro.html', context)
-
 
 
 def get_events(*equipe_id):
