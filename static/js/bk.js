@@ -71,40 +71,18 @@ week_date = getWeeksInMonth(today.getMonth(), today.getFullYear())[2];
 
 $(document).ready(function() {
     $("#demoEvoCalendar").evoCalendar({
-        format: "MM dd, yyyy",
-        titleFormat: "MM",
-        calendarEvents: [{
-            id: "d8jai7s",
-            name: "Author's Birthday",
-            description: "Author's note: Thank you for using EvoCalendar! :)",
-            date: "February/15/1999",
-            type: "birthday",
-            everyYear: !0
-        }, {
-            id: "sKn89hi",
-            name: "1-Week Coding Bootcamp",
-            description: "Lorem ipsum dolor sit amet.",
-            badge: "5-day event",
-            date: [ today.getMonth() + 1 + "/" + week_date.start + "/" + today.getFullYear(), today.getMonth() + 1 + "/" + week_date.end + "/" + today.getFullYear() ],
-            type: "event",
-            everyYear: !0
-        }, {
-            id: "in8bha4",
-            name: "Holiday #2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            date: today,
-            type: "holiday"
-        }, {
-            id: "in8bha4",
-            name: "Event #2",
-            date: today,
-            type: "event"
-        }]
+      // theme: 'Royal Navy',
+      format: 'mm/dd/yyyy',
+      titleFormat: "MM",
+      todayHighlight: true,
+      language: "pt",
     });
     $("[data-set-theme]").click(function(b) {
         a(b.target);
     });
     
+// ======================================================================================================================
+
     $("#addBtn").click(function(a) {
         curAdd = getRandom(events.length);
         $("#demoEvoCalendar").evoCalendar("addCalendarEvent", events[curAdd]);
@@ -122,6 +100,7 @@ $(document).ready(function() {
         if (0 === active_events.length) a.target.disabled = !0;
         if (events.length > 0) $("#addBtn").prop("disabled", !1);
     });
+
     a($("[data-set-theme]")[defaultTheme]);
     function a(a) {
         var b = a.dataset.setTheme;
@@ -129,6 +108,7 @@ $(document).ready(function() {
         $(a).addClass("active");
         $("#demoEvoCalendar").evoCalendar("setTheme", b);
     }
+
     var b = getRandom($("[data-settings]").length);
     var c = $("[data-settings]")[b];
     var d = getRandom($("[data-method]").length);
@@ -153,6 +133,7 @@ $(document).ready(function() {
         var c = b.data().event;
         showEventSample(c);
     });
+
 });
 
 function showSettingsSample(a) {

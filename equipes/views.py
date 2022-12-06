@@ -134,6 +134,19 @@ def create_foto(request, equipe_id):
 
 
 
+@login_required
+@permission_required('equipes.change_equipe')
+def delete_foto(request, foto_id):
+    foto = get_object_or_404(Foto, pk=foto_id)
+    equipe_id = foto.equipe.id
+    if request.method == "POST":
+        foto.delete()
+        return HttpResponseRedirect(reverse('equipes:detail', args=(equipe_id, )))
+
+    context = {'foto': foto}
+    return render(request, 'equipes/delete_foto.html', context)
+
+
 
 @login_required
 @permission_required('equipes.change_equipe')
@@ -173,21 +186,11 @@ def edit_evento(request, equipe_id):
     eve = get_events(equipe_id)
     context = {'form1':form1,'form2':form2, 'equipe': equipe, 'eve':eve}
     return render(request, 'equipes/evento.html', context)
+
+
+
+
     
-
-@login_required
-@permission_required('equipes.change_equipe')
-def delete_evento(request, membro_id):
-    membro = get_object_or_404(Membro, pk=membro_id)
-
-    if request.method == "POST":
-        membro.delete()
-        return HttpResponseRedirect(reverse('equipes:index' ))
-
-    context = {'membro': membro}
-    return render(request, 'equipes/delete_membro.html', context)
-
-
 
 def get_events(*equipe_id):
     if equipe_id:
@@ -209,3 +212,4 @@ def get_events(*equipe_id):
         # print(x.data.strftime("%m/%d/%Y"))
         
     return json.dumps(listaEventos,indent=2)
+

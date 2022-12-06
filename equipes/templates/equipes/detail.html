@@ -6,20 +6,19 @@
 {% endblock title %}
 
 {% block content %}
-<h2>Página da Equipe {{ equipe.nome }} </h2>
-
+<h1 class="titulo_equipe">Equipe {{ equipe.nome }} </h1>
+<br>
 <section class="dados-de-equipe">
-    <img src="{{ equipe.logo }}" alt="Logo da equipe {{ equipe.nome}}">
-    <ul>
-        <li>Nome: {{ equipe.nome }}</li>
-        <li>Descrição: {{ equipe.descricao }}</li>
-        {% if perms.equipes.change_equipe %}
-            <li><a href="{% url 'equipes:update' equipe.id %}">Editar</a></li>
-        {% endif%}
-        {% if perms.equipes.delete_equipe %}
-            <li><a href="{% url 'equipes:delete' equipe.id %}">Apagar</a></li>
-        {% endif%}
-    </ul>
+    <img src="{{ equipe.logo }}" alt="Logo da equipe {{ equipe.nome}}" class="logo">
+    <header>
+        <h3>Descrição</h3>
+    </header>
+    {{ equipe.descricao }}
+
+    <br>
+    {% if perms.equipes.change_equipe %}
+        <a href="{% url 'equipes:update' equipe.pk %}"><button>Editar</button></a>
+    {% endif%}
 
 </section>
 
@@ -38,7 +37,7 @@
     {% endif%}
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+    <script src="{% static 'js/evo-calendar.js' %}"></script>
     <script src="{% static 'js/demo.js' %}"></script>
     
     <script> 
@@ -90,6 +89,9 @@
         {% if equipe.foto_set.all %}
             {% for foto in equipe.foto_set.all %}
             <img src="{{ foto.link }}">
+            {% if perms.equipes.change_equipe %}
+            <li><a href="{% url 'equipes:delete-foto' foto.id %}">Remover</a></li>
+            {% endif%}
             {% endfor %}
         {% else %}
             <p>Não há fotos para esta equipe.</p>
@@ -98,6 +100,12 @@
 
     {% if perms.equipes.change_equipe %}
         <a href="{% url 'equipes:foto' equipe.pk %}"><button>Adicionar Foto</button></a>
+    {% endif%}
+</section>
+<hr>
+<section>
+    {% if perms.equipes.delete_equipe %}
+        <p ><a style="color:red" href="{% url 'equipes:delete' equipe.id %}">Apagar Equipe</a></p>
     {% endif%}
 </section>
 

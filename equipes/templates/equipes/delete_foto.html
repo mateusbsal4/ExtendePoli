@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'equipes:delete-foto' foto.id %}" method="post">
+    {% csrf_token %}
+    <p>
+        Você tem certeza que deseja remover esta foto?
+    </p>
+    <button type="submit">Remover</button>
+</form>
+
+{% endblock content %}
