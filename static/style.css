@@ -23,10 +23,13 @@
 
 html,
 body {
+  position: relative;
   height: 100%;
-  overflow-y: hidden;
+  max-width: 2000px;
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: hidden; */
 }
-
 
 header#cabecalho-principal {
   padding: 40px 0px;
@@ -46,8 +49,18 @@ h4{
   align-items: center;
   font-size: 100px;
   text-align: center;
-
 }
+
+.logo_site {
+  font-size:5vw;
+}
+
+.titulo_equipe {
+  font-size:5vw;
+}
+
+
+
 
 h1{
   padding: 20px 0px;
@@ -60,41 +73,69 @@ h3{
 }
 
 
-li a {
+/* li a {
   color: var(--bg-color);
   font-weight: bold;
   text-decoration: none;
-}
+} */
 
 li a:hover {
   color: floralwhite;
   text-decoration: underline;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
+.dados-de-equipe {
+  color: var(--primary-color);
+  width: 100%;
+}
+.logo {
+  width:10%;
+  max-width: 250px;
+  /* min-width: 100px; */
 }
 
 nav#navegacao-principal li {
   display: inline-block;
   padding: 10px;
   text-align: right;
+  color: var(--bg-color);
+  font-size: 15px;
 }
 
+@media screen and (min-width: 600px) {
+  nav#navegacao-principal li {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  nav#navegacao-principal li {
+    font-size: 30px;
+  }
+  .titulo_equipe {
+    font-size:100px;
+  }
+}
+
+nav#navegacao-principal li a{
+  font-weight: bold;
+  color: var(--bg-color);
+  text-decoration: none;
+}
 section.conteiner-principal {
   position: relative;
   margin: 0 auto;
   width: 100%;
+  max-width: 1300px;
   padding: 1rem 1rem;
   flex-grow: 1;
 
 }
 
-.center{
+/* .center{
 
 
-}
+} */
 
 .extras{
   position: absolute;
@@ -111,7 +152,7 @@ section.conteiner-principal {
 }
 
 .texto1{
-  margin top: 100px
+  margin-top: 100px
 }
 
 .texto1 h1{
@@ -169,22 +210,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.dados-de-filme {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  padding: 1rem 0;
-}
-
-.dados-de-filme img {
-  width: 285px;
-  box-shadow: 2px 2px 10px var(--color-shadow);
-}
-
-.dados-de-filme ul {
-  list-style-type: none;
-}
 
 .column{
   margin: 150px;
@@ -258,4 +283,29 @@ roda {
   text-align: center;
 
 }
-  
+
+/* Create two equal columns that floats next to each other */
+.columnFerro {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.rowFerro {
+  height: 400px;
+}
+
+.rowFerro:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .columnFerro {
+    width: 100%;
+  }
+}

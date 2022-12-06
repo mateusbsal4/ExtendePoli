@@ -10,12 +10,15 @@
  * Issues: https://github.com/edlynvillegas/evo-calendar/issues
  *
 */
-
+:root{
+    /* --bk_color: #216583; */
+    --bk_color: #130c4f;
+}
 /* Evo Calendar - Theme: Royal Navy */
 .royal-navy .calendar-sidebar {
-    background-color: #216583;
-    -webkit-box-shadow: 5px 0 18px -3px #216583;
-    box-shadow: 5px 0 18px -3px #216583;
+    background-color: var(--bk_color);
+    -webkit-box-shadow: 5px 0 18px -3px var(--bk_color);
+    box-shadow: 5px 0 18px -3px var(--bk_color);
 }
 .royal-navy.sidebar-hide .calendar-sidebar {
     -webkit-box-shadow: none;
@@ -74,7 +77,7 @@
     color: #164255;
 }
 .royal-navy th[colspan="7"] {
-    color: #216583;
+    color: var(--bk_color);
 }
 .royal-navy th[colspan="7"]::after {
     background-color: rgba(33, 101, 131, 0.15);
@@ -88,10 +91,10 @@
     border-color: #164255;
 }
 .royal-navy tr.calendar-body .calendar-day .day.calendar-today {
-    background-color: #216583;
+    background-color: var(--bk_color);
     color: #fff;
-    -webkit-box-shadow: 0 5px 10px -3px #216583;
-            box-shadow: 0 5px 10px -3px #216583;
+    -webkit-box-shadow: 0 5px 10px -3px var(--bk_color);
+            box-shadow: 0 5px 10px -3px var(--bk_color);
 }
 .royal-navy #eventListToggler {
     width: 35px;
@@ -112,7 +115,7 @@
 .royal-navy .calendar-events {
     padding-top: 50px;
     padding-bottom: 40px;
-    background-color: #216583;
+    background-color: var(--bk_color);
     color: #fff;
 }
 .royal-navy .calendar-events::-webkit-scrollbar-thumb {
@@ -178,8 +181,8 @@
         bottom: -8px;
     }
     .royal-navy .calendar-events {
-        -webkit-box-shadow: -5px 0 18px -3px #216583;
-                box-shadow: -5px 0 18px -3px #216583;
+        -webkit-box-shadow: -5px 0 18px -3px var(--bk_color);
+                box-shadow: -5px 0 18px -3px var(--bk_color);
     }
     .royal-navy.event-hide .calendar-events {
         -webkit-transform: translateX(calc(100% + 1px));
@@ -213,7 +216,7 @@
 }
 @media screen and (max-width: 425px) {
     .royal-navy .calendar-sidebar > .calendar-year {
-        background-color: #216583;
+        background-color: var(--bk_color);
         -webkit-box-shadow: 0 5px 8px -3px rgba(12, 37, 47, 0.65);
                 box-shadow: 0 5px 8px -3px rgba(12, 37, 47, 0.65);
     }

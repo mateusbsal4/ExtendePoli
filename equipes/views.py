@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
 from .models import Equipe, Membro, Foto, Evento
-from .forms import EquipeForm, MembroForm, FotoForm, EventoForm
+from .forms import EquipeForm, MembroForm, FotoForm, EventoForm, DelEventoForm
 from django.contrib.auth.decorators import login_required, permission_required
 import json
 # Create your views here.
@@ -150,16 +150,18 @@ def delete_foto(request, foto_id):
 
 @login_required
 @permission_required('equipes.change_equipe')
-def create_evento(request, equipe_id):
+def edit_evento(request, equipe_id):
     equipe = get_object_or_404(Equipe, pk=equipe_id)
-    if request.method == 'POST':
-        form = EventoForm(request.POST)
-        if form.is_valid():
+    form1 = EventoForm()
+    form2 = DelEventoForm()
+    if request.method == 'POST' and 'btnform1' in request.POST:
+        form1 = EventoForm(request.POST)
+        if form1.is_valid():
             # eve_id = form.cleaned_data['ID']
-            eve_name = form.cleaned_data['nome']
-            eve_desc = form.cleaned_data['descricao']
-            eve_date = form.cleaned_data['data']
-            eve_type = form.cleaned_data['tipo']
+            eve_name = form1.cleaned_data['nome']
+            eve_desc = form1.cleaned_data['descricao']
+            eve_date = form1.cleaned_data['data']
+            eve_type = form1.cleaned_data['tipo']
             evento = Evento(
                             # ID=eve_id,
                             nome=eve_name,
@@ -170,32 +172,25 @@ def create_evento(request, equipe_id):
                             )
             evento.save()
             # evento.equipes.add(equipe)
-            return HttpResponseRedirect(
-                reverse('equipes:detail', args=(equipe_id, )))
-    else:
-        form = EventoForm()
+            # return HttpResponseRedirect(
+            #     reverse('equipes:detail', args=(equipe_id, )))
+    if request.method == 'POST' and 'btnform2' in request.POST:
+        form2 = DelEventoForm(request.POST)
+        if form2.is_valid():
+            eve_id = form2.cleaned_data['ID']
+            evento = get_object_or_404(Evento, pk=eve_id)
+            evento.delete()
+            # return HttpResponseRedirect(
+            #         reverse('equipes:detail', args=(equipe_id, )))
     
     eve = get_events(equipe_id)
-    context = {'form':form, 'equipe': equipe, 'eve':eve}
+    context = {'form1':form1,'form2':form2, 'equipe': equipe, 'eve':eve}
     return render(request, 'equipes/evento.html', context)
 
 
 
+
     
-
-@login_required
-@permission_required('equipes.change_equipe')
-def delete_evento(request, membro_id):
-    membro = get_object_or_404(Membro, pk=membro_id)
-
-    if request.method == "POST":
-        membro.delete()
-        return HttpResponseRedirect(reverse('equipes:index' ))
-
-    context = {'membro': membro}
-    return render(request, 'equipes/delete_membro.html', context)
-
-
 
 def get_events(*equipe_id):
     if equipe_id:
@@ -214,7 +209,7 @@ def get_events(*equipe_id):
                 "type" : x.tipo,
             }
         )
-        print(x.data.strftime("%m/%d/%Y"))
+        # print(x.data.strftime("%m/%d/%Y"))
         
     return json.dumps(listaEventos,indent=2)
 

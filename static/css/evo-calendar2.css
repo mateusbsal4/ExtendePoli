@@ -10,7 +10,6 @@
  * Issues: https://github.com/edlynvillegas/evo-calendar/issues
  *
 */
-
 *, ::after, ::before {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -30,6 +29,7 @@ input:focus, textarea:focus, button:focus {
     background-color: #fbfbfb;
     color: #5a5a5a;
     width: 100%;
+    /* height: calc(100%); */
     -webkit-box-shadow: 0 10px 50px -20px #8773c1;
             box-shadow: 0 10px 50px -20px #8773c1;
     margin: 0 auto;
@@ -212,7 +212,8 @@ tr.calendar-header .calendar-header-day {
 }
 
 tr.calendar-body {
-
+    /* height: 200px; */
+    height:90px;
 }
 tr.calendar-body .calendar-day {
     padding: 10px 0;
@@ -549,8 +550,9 @@ button.icon-button > span.chevron-arrow-right {
         padding: 70px 20px 60px 20px;
     }
 }
+
 /* 1024 */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1140px) {
     .calendar-sidebar {
         width: 175px;
     }

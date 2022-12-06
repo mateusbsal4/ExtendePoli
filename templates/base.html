@@ -11,22 +11,27 @@
         {% block title %}{% endblock %} | ExtendePoli
     </title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Saira+Stencil+One&family=Zen+Dots&display=swap" rel="stylesheet"> <!-- adicione esta linha -->
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> <!-- adicione esta linha -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar2.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.orange-coral.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.midnight-blue.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/evo-calendar.royal-navy.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/demo2.css' %}">
 </head>
 
 <body>
     <header id="cabecalho-principal">
-        <a href="{% url 'index' %}"> <h4>ExtendePoli</h4> </a> <!-- adicione esta linha -->
+        <a href="{% url 'index' %}"> <h4 class="logo_site">ExtendePoli</h4> </a>
         <nav id="navegacao-principal">
             <ul>
+                <li><a href="{% url 'equipes:index' %}">Equipes</a></li>
+                <li><a href="{% url 'about' %}">Sobre</a></li>
                 {% if user.is_authenticated %}
                     <li> Logado com {{ user.username }} </li>
                     <li><a href="{% url 'logout' %}">Log out</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Log in</a></li>
                 {% endif %}
-                <li><a href="{% url 'about' %}">Sobre</a></li>
-                <li><a href="{% url 'equipes:index' %}">Equipes</a></li>
             </ul>
         </nav>
 
@@ -37,19 +42,19 @@
             {% endblock content %}
 
         
-            <div class ="extras">
+            <!-- <div class ="extras">
                 <h1>Calendário</h1>
 
                 
-            </div>
-            <div class= "center"> 
+            </div> -->
+            <!-- <div class= "center"> 
                 <div class = "texto1">
                     <h1>Todos os <span style="color: #064a7b;"> Grupos</span></h1>
                     <roda>Skyrats</roda> <br/> <roda>KeepFlying</roda> <br/> <roda>Jupiter</roda> <br/> <roda>PoliMilhagem</roda>
 
 
                 </div>
-            </div>
+            </div> -->
 
     </main>
 
