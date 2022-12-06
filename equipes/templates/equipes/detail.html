@@ -61,7 +61,7 @@
         {% if equipe.membro_set.all %}
             {% for membro in equipe.membro_set.all %}
             <p>
-                <h4>{{ membro.nome }}</h4>
+                {{ membro.nome }}
                 <ul>
                     <li>Curso: {{ membro.curso }}</li>
                     <li>Ingressou na equipe em: {{ membro.entrada_equipe|date }} </li>
