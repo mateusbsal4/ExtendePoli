@@ -1,45 +1,8 @@
-var defaultTheme = getRandom(4);
+var defaultTheme = 3;
 
 var today = new Date();
 
-var events = [ {
-    id: "imwyx6S",
-    name: "Event #3",
-    description: "Lorem ipsum dolor sit amet.",
-    date: today.getMonth() + 1 + "/18/" + today.getFullYear(),
-    type: "event"
-}, {
-    id: "9jU6g6f",
-    name: "Holiday #1",
-    description: "Lorem ipsum dolor sit amet.",
-    date: today.getMonth() + 1 + "/10/" + today.getFullYear(),
-    type: "holiday"
-}, {
-    id: "0g5G6ja",
-    name: "Event #1",
-    description: "Lorem ipsum dolor sit amet.",
-    date: [ today.getMonth() + 1 + "/2/" + today.getFullYear(), today.getMonth() + 1 + "/5/" + today.getFullYear() ],
-    type: "event",
-    everyYear: !0
-}, {
-    id: "y2u7UaF",
-    name: "Holiday #3",
-    description: "Lorem ipsum dolor sit amet.",
-    date: today.getMonth() + 1 + "/23/" + today.getFullYear(),
-    type: "holiday"
-}, {
-    id: "dsu7HUc",
-    name: "Birthday #1",
-    description: "Lorem ipsum dolor sit amet.",
-    date: new Date(),
-    type: "birthday"
-}, {
-    id: "dsu7HUc",
-    name: "Birthday #2",
-    description: "Lorem ipsum dolor sit amet.",
-    date: today.getMonth() + 1 + "/27/" + today.getFullYear(),
-    type: "birthday"
-} ];
+var events = [];
 
 var active_events = [];
 
@@ -73,55 +36,14 @@ $(document).ready(function() {
     $("#demoEvoCalendar").evoCalendar({
         format: "MM dd, yyyy",
         titleFormat: "MM",
-        calendarEvents: [{
-            id: "d8jai7s",
-            name: "Author's Birthday",
-            description: "Author's note: Thank you for using EvoCalendar! :)",
-            date: "February/15/1999",
-            type: "birthday",
-            everyYear: !0
-        }, {
-            id: "sKn89hi",
-            name: "1-Week Coding Bootcamp",
-            description: "Lorem ipsum dolor sit amet.",
-            badge: "5-day event",
-            date: [ today.getMonth() + 1 + "/" + week_date.start + "/" + today.getFullYear(), today.getMonth() + 1 + "/" + week_date.end + "/" + today.getFullYear() ],
-            type: "event",
-            everyYear: !0
-        }, {
-            id: "in8bha4",
-            name: "Holiday #2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            date: today,
-            type: "holiday"
-        }, {
-            id: "in8bha4",
-            name: "Event #2",
-            date: today,
-            type: "event"
-        }]
+        language: "pt",
+        theme: "Royal Navy",
+        todayHighlight: true,
     });
     $("[data-set-theme]").click(function(b) {
         a(b.target);
     });
     
-    $("#addBtn").click(function(a) {
-        curAdd = getRandom(events.length);
-        $("#demoEvoCalendar").evoCalendar("addCalendarEvent", events[curAdd]);
-        active_events.push(events[curAdd]);
-        events.splice(curAdd, 1);
-        if (0 === events.length) a.target.disabled = !0;
-        if (active_events.length > 0) $("#removeBtn").prop("disabled", !1);
-    });
-
-    $("#removeBtn").click(function(a) {
-        curRmv = getRandom(active_events.length);
-        $("#demoEvoCalendar").evoCalendar("removeCalendarEvent", active_events[curRmv].id);
-        events.push(active_events[curRmv]);
-        active_events.splice(curRmv, 1);
-        if (0 === active_events.length) a.target.disabled = !0;
-        if (events.length > 0) $("#addBtn").prop("disabled", !1);
-    });
     a($("[data-set-theme]")[defaultTheme]);
     function a(a) {
         var b = a.dataset.setTheme;
