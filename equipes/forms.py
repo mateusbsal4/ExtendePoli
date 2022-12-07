@@ -2,6 +2,9 @@ from django.forms import ModelForm
 from django import forms
 from .models import Equipe, Membro, Foto, Evento
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+    
 class EquipeForm(ModelForm):
     class Meta:
         model = Equipe
@@ -29,7 +32,9 @@ class MembroForm(ModelForm):
             'curso': 'Curso de ingresso na Poli',
             'entrada_equipe': "Data de entrada na equipe",         
         }
-
+        widgets = {
+            'entrada_equipe': DateInput(),
+        }
 class FotoForm(ModelForm):
     class Meta:
         model = Foto
@@ -40,8 +45,7 @@ class FotoForm(ModelForm):
             'link': 'Url da foto',
         }
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
+
     
 class EventoForm(ModelForm):
     class Meta:

@@ -207,6 +207,7 @@ def get_events(*equipe_id):
                 "description": x.descricao,
                 "date" : x.data.strftime("%m/%d/%Y"),
                 "type" : x.tipo,
+                "equipe": x.equipe.nome,
             }
         )
         # print(x.data.strftime("%m/%d/%Y"))
